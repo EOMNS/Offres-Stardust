@@ -15,12 +15,16 @@ header {
 }
 
 main {
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
+    max-width: 80vw;
+    margin: 5vw auto;
+    padding: 2vw 2vh;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
 label {
@@ -38,6 +42,26 @@ input[type="file"] {
     box-sizing: border-box;
 }
 
+#conteneur {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    justify-content: center;
+}
+
+#cadrePDF {
+    border: 2px solid #ccc;
+    width: 60%;
+    height: 60vh;
+    max-width: 800px; /* Ajoutez une limite de largeur */
+    margin-left: 20px;
+    margin-top: 10px; /* Ajustez selon votre préférence */
+}
+
+#inputFile {
+    margin-right: 10px;
+}
+
 button {
     background-color: #007bff;
     color: #fff;
@@ -51,6 +75,7 @@ button {
 button:hover {
     background-color: #0056b3;
 }
+
 
 footer {
     background-color: #f7f7f7;
