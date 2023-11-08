@@ -14,12 +14,17 @@
         <h1>Stardust ✨ - Générateur de PDF</h1>
     </header>
     <main>
-        <label for="inputFile">Sélectionnez un fichier Excel (.xlsx ou .xls) :</label>
-        <input type="file" id="inputFile" accept=".xlsx, .xls">
-        <button type="button" onclick="generatePDF()">Générer PDF</button>
+        <div id="conteneur">
+            <div>
+            <label for="inputFile">Sélectionnez un fichier Excel (.xlsx ou .xls) :</label>
+            <input type="file" id="inputFile" accept=".xlsx, .xls">
+            <button type="button" onclick="generatePDF()">Générer PDF</button>
+            </div>
+            <div id="cadrePDF"></div>
+        </div>
     </main>
     <footer>
-        <p>&copy; 2023 Stardust Corporation</p>
+        <p>&copy; 2023 - Emil Omnes</p>
     </footer>
     <script src="script.js"></script>
 </body>
