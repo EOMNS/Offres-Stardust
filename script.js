@@ -75,12 +75,15 @@ function generatePDF() {
     const marge = 10; // Marge entre le cadre et le contenu en mm
 
     for (let i = 0; i < sheetData.length; i++) {
-      var checktitle = getValeurParNom(sheetData[i], "Intitulé du poste")
-      if (checktitle !== 'null') {
+      let checktitle = getValeurParNom(sheetData[i], "Intitulé du poste")
+      console.log(checktitle)
+      if (checktitle) {
         var titre = checktitle
       } else {
         var titre = getValeurParNom(sheetData[i], "Appellation ROME")
+        console.log(titre)
       }
+
       var lieu = getValeurParNom(sheetData[i], "Lieu de travail")
       var numeroOffre = getValeurParNom(sheetData[i], "N° Offre")
       var typeOffre = getValeurParNom(sheetData[i], "Type contrat")
@@ -97,7 +100,7 @@ function generatePDF() {
     doc.rect(marge+2, marge+2, largeurPage-4 - (2 * marge), hauteurPage-4 - (2 * marge), 'D'); // Position x, y, largeur, hauteur
 
     
-    const titreLines = splitTextIntoLines(titre, largeurPage - (2 * marge) - 20, 39, 'Arial');
+    const titreLines = splitTextIntoLines(titre, largeurPage - (2 * marge+20)-20, 39, 'Arial');
     let yTitre = 50;
     for (const line of titreLines) {
       
@@ -122,8 +125,8 @@ function generatePDF() {
     doc.text(`Offre n°${numeroOffre}`, xNumeroOffre, 120);
 
     let contenuOffre = `${typeOffre}`;
-    if (dureeOffre !== '') {
-        contenuOffre += ` ${dureeOffre}`;
+    if (dureeOffre && dureeOffre.trim() !== '') { // Vérifie si dureeOffre n'est pas null ou vide
+        contenuOffre += ` - ${dureeOffre}`;
     }
     //contenuOffre += ` - ${EXP}`;
 
@@ -144,12 +147,49 @@ function generatePDF() {
 
 
 
-    const iframe = document.createElement('iframe');
-    iframe.src = doc.output('datauristring'); // Convertit le PDF en une URL de données
-    iframe.style.width = '70%'; // Ajustez la taille selon vos préférences
-    iframe.style.height = '800px'; // Ajustez la taille selon vos préférences
+  const voirButton = document.createElement('button');
+  voirButton.innerText = 'Voir';
+  voirButton.style.marginRight = '10px';
+  voirButton.addEventListener('click', function() {
+    const pdfDataUri = doc.output('datauristring'); // Convertit le PDF en une URL de données
 
-    // Ajoutez l'iframe à votre page
-    document.body.appendChild(iframe);
+    const byteCharacters = atob(pdfDataUri.split(',')[1]); // Convertit les caractères base64 en tableau de bytes
+    const byteNumbers = new Array(byteCharacters.length);
+    
+    for (let i = 0; i < byteCharacters.length; i++) {
+        byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+    
+    const byteArray = new Uint8Array(byteNumbers); // Convertit les byte numbers en Uint8Array
+    
+    const blob = new Blob([byteArray], { type: 'application/pdf' }); // Crée un Blob à partir de l'Uint8Array
+    
+    const url = URL.createObjectURL(blob);
+    
+    window.open(url, '_blank');
+  });
+
+  const telechargerButton = document.createElement('button');
+  telechargerButton.innerText = 'Télécharger';
+  telechargerButton.addEventListener('click', function() {
+      doc.save('offre_emploi.pdf'); // Nom du fichier PDF
+  });
+
+  // Créez les icônes (facultatif)
+  const voirIcon = document.createElement('i');
+  voirIcon.className = 'fa fa-eye';
+  voirButton.prepend(voirIcon);
+
+  const telechargerIcon = document.createElement('i');
+  telechargerIcon.className = 'fa fa-download';
+  telechargerButton.prepend(telechargerIcon);
+
+  // Créez un conteneur pour les boutons
+  const boutonsDiv = document.createElement('div');
+  boutonsDiv.appendChild(voirButton);
+  boutonsDiv.appendChild(telechargerButton);
+
+  // Ajoutez le conteneur à la page
+  document.body.appendChild(boutonsDiv);
     
 };
