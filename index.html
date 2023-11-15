@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="manifest" href="manifest.json">
-    <title>Stardust ✨ - Générateur de PDF</title>
+    <title>Stardust ✨ - Générateur d'Offres</title>
     <link rel="icon" href="https://eomns.github.io/Offres-Stardust/assets/icon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="https://eomns.github.io/Offres-Stardust/assets/icon.ico" type="image/x-icon">  
     <link rel="stylesheet" href="styles.css"> <!-- Ajoutez un fichier CSS pour styliser la page -->
@@ -13,11 +13,11 @@
 </head>
 <body>
     <header>
-        <h1>Stardust ✨ - Générateur de PDF</h1>
+        <h1>Stardust ✨ - Générateur d'Offres</h1>
     </header>
     <main>
         <div id="conteneur">
-            <div>
+            <div id="uploadWindow">
             <label for="inputFile">Sélectionnez un fichier Excel (.xlsx ou .xls) :</label>
             <input type="file" id="inputFile" accept=".xlsx, .xls">
             <button type="button" onclick="generatePDF()">Générer PDF</button>
