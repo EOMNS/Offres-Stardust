@@ -9,7 +9,7 @@
     <p>Le texte "Offre nº" a été détecté !</p>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@2.3.0/dist/tesseract.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js"></script>
   <script>
     const video = document.getElementById('videoElement');
     const messageDiv = document.getElementById('message');
@@ -20,17 +20,16 @@
       })
       .catch(err => console.error('Accès à la caméra refusé : ', err));
 
-    const worker = Tesseract.createWorker({
+    Tesseract.createWorker({
       logger: m => console.log(m),
-    });
-
-    worker.load().then(() => {
+    }).then(worker => {
+      worker.load();
       worker.loadLanguage('eng');
       worker.initialize('eng');
-      startTextDetection();
+      startTextDetection(worker);
     });
 
-    async function startTextDetection() {
+    async function startTextDetection(worker) {
       const { data: { text } } = await worker.recognize(video);
 
       if (text.includes('Offre nº')) {
@@ -39,7 +38,7 @@
         messageDiv.style.display = 'none';
       }
 
-      requestAnimationFrame(startTextDetection);
+      requestAnimationFrame(() => startTextDetection(worker));
     }
   </script>
 </body>
