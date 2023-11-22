@@ -1,6 +1,16 @@
-document.addEventListener("DOMContentLoaded", function () {
-});
 
+
+function getImgFromUrl(logo_url, callback) {
+  var img = new Image();
+  img.src = logo_url;
+  img.onload = function () {
+      callback(img);
+  };
+} 
+
+document.addEventListener("DOMContentLoaded", function () {
+
+});
 let sheetData
 
 document.getElementById('inputFile').addEventListener('change', function(event) {
@@ -143,23 +153,10 @@ function generatePDF() {
     doc.addImage(imgData, 'PNG', 20, 155, 35, 35);
 
     // Ajout du QR code
-    const qrCodeData = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https://candidat.pole-emploi.fr/offres/recherche/detail/${numeroOffre}`;
-    const qrCode = new QRCode(document.createElement('div'), {
-      text: qrCodeData,
-      width: 250,
-      height: 250,
-    });
-
-    const qrCodeImage = qrCode._oDrawing._elImage; // Récupérer l'élément image du QR code
-    const qrCodeCanvas = document.createElement('canvas');
-    const qrCodeContext = qrCodeCanvas.getContext('2d');
-
-    qrCodeCanvas.width = qrCodeImage.width;
-    qrCodeCanvas.height = qrCodeImage.height;
-    qrCodeContext.drawImage(qrCodeImage, 0, 0);
-
+    getImgFromUrl(`https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https://candidat.pole-emploi.fr/offres/recherche/detail/${numeroOffre}`, function (img) {
     // Ajouter le QR code à la page PDF
-    doc.addImage(qrCodeCanvas.toDataURL('image/png'), 'PNG', 70, 155, 35, 35);
+      doc.addImage(img, 'PNG', 70, 155, 35, 35);
+    });
       
     if (i !== sheetData.length - 1) {
       doc.addPage(); // Ajouter une nouvelle page pour toutes les itérations sauf la dernière
