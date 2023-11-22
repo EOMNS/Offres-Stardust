@@ -5,24 +5,30 @@ function generateQRCode(text, size = 200) {
   return `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(text)}&size=${size}x${size}`;
 }
 
-function convertImageToBase64(imageURL, callback) {
-  const img = new Image();
-  img.crossOrigin = 'Anonymous';
+function convertImageToBase64(imageURL) {
+  return new Promise((resolve, reject) => {
+      const img = new Image();
+      img.crossOrigin = 'Anonymous';
 
-  img.onload = function () {
-      const canvas = document.createElement('canvas');
-      const ctx = canvas.getContext('2d');
+      img.onload = function () {
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
 
-      canvas.width = img.width;
-      canvas.height = img.height;
+          canvas.width = img.width;
+          canvas.height = img.height;
 
-      ctx.drawImage(img, 0, 0);
+          ctx.drawImage(img, 0, 0);
 
-      const dataURL = canvas.toDataURL('image/png');
-      callback(dataURL);
-  };
+          const dataURL = canvas.toDataURL('image/png');
+          resolve(dataURL);
+      };
 
-  img.src = imageURL;
+      img.onerror = function (error) {
+          reject(error);
+      };
+
+      img.src = imageURL;
+  });
 }
 
 
@@ -168,11 +174,17 @@ function generatePDF() {
     doc.addImage(imgData, 'PNG', 20, 155, 35, 35);
     // Ajout d'un cadre noir
     var qrCodeURL = generateQRCode(`https://candidat.pole-emploi.fr/offres/recherche/detail/${numeroOffre}`);
-    var qr = new Image();
-    qr.src = qrCodeURL;
 
-    convertImageToBase64(qrCodeURL, function(base64Image) {
-      doc.addImage(base64Image, 'PNG', 20, 155, 35, 35);
+    convertImageToBase64(qrCodeURL)
+    .then((base64Image) => {
+      const img64 = new Image();
+      img64.crossOrigin = 'Anonymous';
+      img64.src = base64Image;
+      console.log(base64Image);
+      doc.addImage(base64Image, 'PNG', 20, 155, 100, 35);
+    })
+    .catch((error) => {
+        console.error('Erreur lors du chargement de l\'image :', error);
     });
     if (i !== sheetData.length - 1) {
       doc.addPage(); // Ajouter une nouvelle page pour toutes les itérations sauf la dernière
