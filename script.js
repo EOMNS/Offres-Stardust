@@ -5,6 +5,27 @@ function generateQRCode(text, size = 200) {
   return `https://api.qrserver.com/v1/create-qr-code/?data=${encodeURIComponent(text)}&size=${size}x${size}`;
 }
 
+function convertImageToBase64(imageURL, callback) {
+  const img = new Image();
+  img.crossOrigin = 'Anonymous';
+
+  img.onload = function () {
+      const canvas = document.createElement('canvas');
+      const ctx = canvas.getContext('2d');
+
+      canvas.width = img.width;
+      canvas.height = img.height;
+
+      ctx.drawImage(img, 0, 0);
+
+      const dataURL = canvas.toDataURL('image/png');
+      callback(dataURL);
+  };
+
+  img.src = imageURL;
+}
+
+
 let sheetData
 
 document.getElementById('inputFile').addEventListener('change', function(event) {
@@ -150,9 +171,9 @@ function generatePDF() {
     var qr = new Image();
     qr.src = qrCodeURL;
 
-    qr.onload = function() {
-        // Ajoutez l'image à la page
-        doc.addImage(this, 'PNG', 50, 50, 100, 100);};
+    convertImageToBase64(qrCodeURL, function(base64Image) {
+      doc.addImage(base64Image, 'PNG', 20, 155, 35, 35);
+    });
     if (i !== sheetData.length - 1) {
       doc.addPage(); // Ajouter une nouvelle page pour toutes les itérations sauf la dernière
     }
