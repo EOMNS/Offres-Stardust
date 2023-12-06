@@ -188,7 +188,6 @@ async function generatePDF() {
 
   const dateFormatee = DateUtilitaire.dateFormatee();
   const heureFormatee = DateUtilitaire.heureFormatee();
-  await addUrlImageToPage(doc, 'https://eomns.github.io/Offres-Stardust/assets/icon.png', 0, largeurPage + (largeurPage/2), 200, 200)
   doc.setDrawColor(0); // Couleur du trait : noir
   doc.setLineWidth(0.7); // Épaisseur du trait en points (1 point = 0.3528 mm)
   doc.line(largeurPage/2, hauteurPage, largeurPage/2, -hauteurPage, 'S'); // Position x, y, largeur, hauteur
@@ -196,14 +195,22 @@ async function generatePDF() {
   doc.setFont('Arial', 'bold');
   doc.setFontSize(25)
   let text = `Offres de la semaine n°${generation.weekGenerated}`;
-  doc.text(text, (largeurPage + (largeurPage/2) - doc.getTextWidth(text)) / 2, 105)
+  doc.text(text, (largeurPage + (largeurPage/2) - doc.getTextWidth(text)) / 2, 90)
   doc.setFont('Arial', 'normal');
   doc.setFontSize(18)
   text = `Généré le ${dateFormatee} à ${heureFormatee}`;
-  doc.text(text, (largeurPage + (largeurPage/2) - doc.getTextWidth(text)) / 2, 120)
+  doc.text(text, (largeurPage + (largeurPage/2) - doc.getTextWidth(text)) / 2, 105)
+
+  doc.setFont('Arial', 'normal');
+  doc.setFontSize(6)
+  text = "Créé avec Stardust - Générateur D'offres";
+  doc.text(text, (largeurPage + (largeurPage/2) - doc.getTextWidth(text)) / 2, 200)
+  text = "© 2023 - Emil Omnes"
+  doc.text(text, (largeurPage + (largeurPage/2) - doc.getTextWidth(text)) / 2, 203)
   
+
   const lignesTitre = splitTextIntoLines(`d'après le tableau ${generation.fileName} modifié le ${DateUtilitaire.dateFormatee(generation.lastModified)}`, largeurPage/2 - (2 * marge+13)-10, 13, 'Arial');
-  let yTitre = 160;
+  let yTitre = 120;
   for (const line of lignesTitre) {
     doc.setFont('Arial', 'normal');
     doc.setFontSize(13)
