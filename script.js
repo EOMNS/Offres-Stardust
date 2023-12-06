@@ -188,7 +188,7 @@ async function generatePDF() {
 
   const dateFormatee = DateUtilitaire.dateFormatee();
   const heureFormatee = DateUtilitaire.heureFormatee();
-  var titleImage = await addUrlImageToPage(doc, 'http://eomns.github.io/Offres-Stardust/assets/icon.ico', 0, largeurPage + (largeurPage/2), 200, 200)
+  await addUrlImageToPage(doc, 'https://eomns.github.io/Offres-Stardust/assets/icon.png', 0, largeurPage + (largeurPage/2), 200, 200)
   doc.setDrawColor(0); // Couleur du trait : noir
   doc.setLineWidth(0.7); // Épaisseur du trait en points (1 point = 0.3528 mm)
   doc.line(largeurPage/2, hauteurPage, largeurPage/2, -hauteurPage, 'S'); // Position x, y, largeur, hauteur
