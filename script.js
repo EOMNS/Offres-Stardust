@@ -200,16 +200,16 @@ async function generatePDF() {
   doc.setLineWidth(0.7); // Épaisseur du trait en points (1 point = 0.3528 mm)
   doc.line(largeurPage/2, hauteurPage, largeurPage/2, -hauteurPage, 'S'); // Position x, y, largeur, hauteur
 
-  doc.setFont('Arial', 'bold');
+  doc.setFont('Open Sans', 'bold');
   doc.setFontSize(25)
   let text = `Offres de la semaine n°${generation.weekGenerated}`;
   doc.text(text, (largeurPage + (largeurPage/2) - doc.getTextWidth(text)) / 2, 90)
-  doc.setFont('Arial', 'normal');
+  doc.setFont('Open Sans', 'normal');
   doc.setFontSize(18)
   text = `Généré le ${dateFormatee} à ${heureFormatee}`;
   doc.text(text, (largeurPage + (largeurPage/2) - doc.getTextWidth(text)) / 2, 105)
 
-  doc.setFont('Arial', 'normal');
+  doc.setFont('Open Sans', 'normal');
   doc.setFontSize(6)
   text = "Créé avec Stardust - Générateur D'offres";
   doc.text(text, (largeurPage + (largeurPage/2) - doc.getTextWidth(text)) / 2, 200)
@@ -220,7 +220,7 @@ async function generatePDF() {
   const lignesTitre = splitTextIntoLines(`d'après le tableau ${generation.fileName} modifié le ${DateUtilitaire.dateFormatee(generation.lastModified)}`, largeurPage/2 - (2 * marge+13)-10, 13, 'Arial');
   let yTitre = 120;
   for (const line of lignesTitre) {
-    doc.setFont('Arial', 'normal');
+    doc.setFont('Open Sans', 'normal');
     doc.setFontSize(13)
     const largeurTitre = doc.getTextWidth(line);
     const xTitre = (largeurPage + (largeurPage/2) - largeurTitre) / 2; // Centrer horizontalement
@@ -261,10 +261,10 @@ async function generatePDF() {
 
     //#endregion
     
-    const lignesTitre = splitTextIntoLines(offre.titre, largeurPage - (2 * marge+20)-20, 39, 'Arial');
+    const lignesTitre = splitTextIntoLines(offre.titre, largeurPage - (2 * marge+20)-20, 39, 'Open Sans');
     let yTitre = 50;
     for (const line of lignesTitre) {
-      doc.setFont('Arial', 'bold');
+      doc.setFont('Open Sans', 'bold');
       doc.setFontSize(39)
       const largeurTitre = doc.getTextWidth(line);
       const xTitre = (297 - largeurTitre) / 2; // Centrer horizontalement
@@ -272,15 +272,15 @@ async function generatePDF() {
       yTitre += 15; // Augmenter l'espacement entre les lignes
     }
 
-    nouveauTexteCenter(doc, 'Arial', 'normal', 30, offre.lieu, 100)
-    nouveauTexteCenter(doc, 'Arial', 'bold', 40, `Offre n°${offre.numero}`, 120)
+    nouveauTexteCenter(doc, 'Open Sans', 'normal', 30, offre.lieu, 100)
+    nouveauTexteCenter(doc, 'Open Sans', 'bold', 40, `Offre n°${offre.numero}`, 120)
 
     let contenuOffre = offre.type;
     if (offre.duree && offre.duree.trim() !== '') { // Vérifie si dureeOffre n'est pas null ou vide
         contenuOffre += ` - ${offre.duree}`;
     }
     if (contenuOffre) {
-    doc.setFont('Arial', 'bold');
+    doc.setFont('Open Sans', 'bold');
     doc.setFontSize(25);
     const largeurContenuOffre = doc.getTextWidth(contenuOffre);
     const xContenuOffre = 60; // Aligner à gauche
