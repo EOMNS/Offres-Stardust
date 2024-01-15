@@ -1,5 +1,10 @@
 /* styles.css */
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap');
+@font-face {
+  font-family: 'Open Sans';
+  font-weight: 400;
+  font-style: normal;
+  src: url('/assets/fonts/OpenSans-Regular.ttf');
+}
 
 body {
     font-family: Arial, sans-serif;
