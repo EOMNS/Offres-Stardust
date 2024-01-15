@@ -187,6 +187,9 @@ async function generatePDF() {
       unit: 'mm',
       format: 'a4'
   });
+
+  doc.addFont('Open Sans', 'Open Sans', 'normal', 400);
+  
   const largeurPage = 297; // Largeur de la page A4 en mm
   const hauteurPage = 210; // Hauteur de la page A4 en mm
   const marge = 10; // Marge entre le cadre et le contenu en mm
