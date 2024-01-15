@@ -25,7 +25,7 @@ class DateUtilitaire {
     var oneJan = new Date(date.getFullYear(), 0, 1);
     var numberOfDays = Math.floor((date - oneJan) / (24 * 60 * 60 * 1000));
     var result = Math.ceil((date.getDay() + 1 + numberOfDays) / 7);
-    return result;
+    return result - 1;
   }
 }
 
@@ -142,10 +142,18 @@ function getValeurParNom(row, nom) {
 }
 
 function splitTextIntoLines(text, maxWidth, fontSize, font) {
+
+
+  const lines = [];
+  
+  if (text == null) {
+     console.error("Text is null");
+    return lines;
+ } 
+
   const words = text.split(' ');
   let currentLine = '';
-  const lines = [];
-
+  
   const doc = new jsPDF();
   doc.setFont(font, 'normal');
   doc.setFontSize(fontSize);
@@ -227,7 +235,7 @@ async function generatePDF() {
   for (let i = 0; i < sheetData.length; i++) {
     let checktitle = getValeurParNom(sheetData[i], "Intitulé du poste")
     console.log(checktitle)
-    if (checktitle) {
+    if (checktitle !== null) {
       offre.titre = checktitle
     } else {
       offre.titre = getValeurParNom(sheetData[i], "Appellation ROME")
