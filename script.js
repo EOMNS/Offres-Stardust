@@ -188,7 +188,7 @@ async function generatePDF() {
       format: 'a4'
   });
 
-  doc.addFont('Open Sans', 'Open Sans', 'normal', 400);
+  doc.addFont('Open Sans', 'Open Sans', 'normal', 400, '/assets/fonts/OpenSans-Regular.ttf');
   
   const largeurPage = 297; // Largeur de la page A4 en mm
   const hauteurPage = 210; // Hauteur de la page A4 en mm
