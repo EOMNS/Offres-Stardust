@@ -188,13 +188,12 @@ this.addFont('OpenSans-Regular-normal.ttf', 'OpenSans-Regular', 'normal');
 };
 jsPDF.API.events.push(['addFonts', callAddFont])
   })(jsPDF.API);
+  
   const doc = new jsPDF({
       orientation: 'landscape',
       unit: 'mm',
       format: 'a4'
   });
-
-  doc.addFont('OpenSans-Regular', 'OpenSans-Regular', 'normal', 400, '/assets/fonts/OpenSans-Regular.ttf');
   
   const largeurPage = 297; // Largeur de la page A4 en mm
   const hauteurPage = 210; // Hauteur de la page A4 en mm
