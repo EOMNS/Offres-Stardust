@@ -238,7 +238,7 @@ async function generatePDF() {
   for (let i = 0; i < sheetData.length; i++) {
     let checktitle = getValeurParNom(sheetData[i], "Intitulé du poste")
     console.log(checktitle)
-    if (checktitle !== null) {
+    if (checktitle) {
       offre.titre = checktitle
     } else {
       offre.titre = getValeurParNom(sheetData[i], "Appellation ROME")
