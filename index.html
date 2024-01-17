@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stardust ✨ - Générateur d'Offres</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300" rel="stylesheet" type="text/css">
     <link rel="icon" href="https://eomns.github.io/Offres-Stardust/assets/icon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="https://eomns.github.io/Offres-Stardust/assets/icon.ico" type="image/x-icon">  
     <link rel="stylesheet" href="styles.css"> <!-- Ajoutez un fichier CSS pour styliser la page -->
@@ -17,16 +18,50 @@
     <main>
         <div id="conteneur">
             <div id="uploadWindow">
-            <label for="inputFile">Sélectionnez un fichier Excel (.xlsx ou .xls) :</label>
-            <input type="file" id="inputFile" accept=".xlsx, .xls">
-            <button type="button" onclick="generatePDF()">Générer PDF</button>
+                <label for="inputFile">Sélectionnez un fichier Excel (.xlsx ou .xls) :</label>
+                <input class="custom-file-input" type="file" id="inputFile" accept=".xlsx, .xls">
+                <button type="button" onclick="generatePDF()">Générer PDF</button>
+                <div id="dropdowns" class="dropdowns">
+                    <div id="solodrop">
+                        <label for="ROMEDropdown">Choisir la colonne pour ROME :</label>
+                        <select id="ROMEDropdown">
+                        </select>
+                    </div>
+                    <div id="solodrop">
+                        <label for="titreDropdown">Choisir la colonne pour Titre :</label>
+                        <select id="titreDropdown">
+                        </select>
+                    </div>
+                    <div id="solodrop">
+                        <label for="lieuDropdown">Choisir la colonne pour Lieu :</label>
+                        <select id="lieuDropdown">
+                        </select>
+                    </div>
+                    <div id="solodrop">
+                        <label for="numeroDropdown">Choisir la colonne pour Numéro :</label>
+                        <select id="numeroDropdown">
+                        </select>
+                    </div>
+                    <div id="solodrop">
+                        <label for="typeDropdown">Choisir la colonne pour Type :</label>
+                        <select id="typeDropdown">
+                        </select>
+                    </div>
+                    <div id="solodrop">
+                        <label for="dureeDropdown">Choisir la colonne pour Durée :</label>
+                        <select id="dureeDropdown">
+                    </select>
+                    </div>
+                </div>
             </div>
+            
             <div id="cadrePDF"></div>
         </div>
     </main>
     <footer>
         <p>&copy; 2023 - Emil Omnes</p>
     </footer>
+    <script src="def.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

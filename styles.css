@@ -1,16 +1,18 @@
 /* styles.css */
 @font-face {
-  font-family: 'Open Sans';
-  font-weight: 400;
-  font-style: normal;
-  src: url('/assets/fonts/OpenSans-Regular.ttf');
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Open Sans Light'), local('OpenSans-Light'), url(https://fonts.gstatic.com/s/opensans/v13/DXI1ORHCpsQm3Vp6mXoaTXhCUOGz7vYGh680lGh-uXM.woff) format('woff');
 }
 
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f7f7f7;
+}
+* {
+    font-family: 'Open Sans', normal;
 }
 
 header {
@@ -98,3 +100,29 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+
+input[type=file] {
+    color: #222245;
+    padding: 8px;
+    background-color: #fff;
+    border: 1px solid #007bff;
+  }
+  
+  input[type=file]:focus {
+    outline: 2px dashed #007bff;
+    outline-offset: 2px;
+  }
+  
+  input[type=file]::file-selector-button {
+    margin-right: 8px;
+    border: none;
+    background: #007bff;
+    padding: 8px 12px;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  input[type=file]::file-selector-button:hover {
+    background: #4fa4ff;
+  }
