@@ -65,11 +65,8 @@ async function generatePDF() {
     const dateFormatee = DateUtilitaire.dateFormatee();
     const heureFormatee = DateUtilitaire.heureFormatee();
     doc.setDrawColor(0);
-    // Couleur du trait : noir
     doc.setLineWidth(0.7);
-    // Épaisseur du trait en points (1 point = 0.3528 mm)
     doc.line(largeurPage / 2, hauteurPage, largeurPage / 2, -hauteurPage, 'S');
-    // Position x, y, largeur, hauteur
 
     doc.setFont('Arial', 'bold');
     doc.setFontSize(25)

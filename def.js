@@ -105,7 +105,7 @@ function addOptionsToDropdown(dropdown, options, storedValue) {
     // Ajouter une option par défaut
     const defaultOption = document.createElement('option');
     defaultOption.value = null;
-    defaultOption.text = 'Choisir...';
+    defaultOption.text = '👀 Choisir...';
     dropdown.add(defaultOption);
 
     // Ajouter les options du tableau Excel
@@ -117,7 +117,7 @@ function addOptionsToDropdown(dropdown, options, storedValue) {
     });
 
     // Sélectionner la valeur stockée si elle existe
-    dropdown.value = dropdown.value ? storedValue : defaultOption.value;
+    dropdown.value = options.includes(storedValue) ? storedValue : defaultOption.value;
 }
 
 function generateDropdowns(sheetData, dropdownIds) {

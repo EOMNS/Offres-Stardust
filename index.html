@@ -17,40 +17,58 @@
     </header>
     <main>
         <div id="conteneur">
-            <div id="uploadWindow">
-                <label for="inputFile">Sélectionnez un fichier Excel (.xlsx ou .xls) :</label>
-                <input class="custom-file-input" type="file" id="inputFile" accept=".xlsx, .xls">
-                <button type="button" onclick="generatePDF()">Générer PDF</button>
+            <div id="subconteneur">
+                <div id="uploadWindow">
+                    <label for="inputFile">Sélectionnez un fichier Excel (.xlsx ou .xls) :</label>
+                    <input class="custom-file-input" type="file" id="inputFile" accept=".xlsx, .xls">
+                    <button type="button" onclick="generatePDF()">Générer PDF</button>
+                </div>
                 <div id="dropdowns" class="dropdowns">
-                    <div id="solodrop">
-                        <label for="ROMEDropdown">Choisir la colonne pour ROME :</label>
-                        <select id="ROMEDropdown">
-                        </select>
+                    <div class="ddgroup">
+                        <div class="solodrop">
+                            <label for="ROMEDropdown">ROME :
+                            <select id="ROMEDropdown">
+                                <option value="">⌛ en attente d'un fichier..</option>
+                            </select>
+                        </div>
+                        <div class="solodrop">
+                            <label for="titreDropdown">Titre :
+                            <select id="titreDropdown">
+                                <option value="">⌛ en attente d'un fichier..</option>
+                            </select>
+                            </label>
+                        </div>
+                        <div class="solodrop">
+                            <label for="lieuDropdown">Lieu :
+                            <select id="lieuDropdown">
+                                <option value="">⌛ en attente d'un fichier...</option>
+                            </select>
+                            </label>
+                        </div>
                     </div>
-                    <div id="solodrop">
-                        <label for="titreDropdown">Choisir la colonne pour Titre :</label>
-                        <select id="titreDropdown">
-                        </select>
-                    </div>
-                    <div id="solodrop">
-                        <label for="lieuDropdown">Choisir la colonne pour Lieu :</label>
-                        <select id="lieuDropdown">
-                        </select>
-                    </div>
-                    <div id="solodrop">
-                        <label for="numeroDropdown">Choisir la colonne pour Numéro :</label>
-                        <select id="numeroDropdown">
-                        </select>
-                    </div>
-                    <div id="solodrop">
-                        <label for="typeDropdown">Choisir la colonne pour Type :</label>
-                        <select id="typeDropdown">
-                        </select>
-                    </div>
-                    <div id="solodrop">
-                        <label for="dureeDropdown">Choisir la colonne pour Durée :</label>
-                        <select id="dureeDropdown">
-                    </select>
+                    <div class="ddgroup">
+                        <div class="solodrop">
+                            <label for="numeroDropdown">Numéro :
+                            <select id="numeroDropdown">
+                                <option value="">⌛ en attente d'un fichier..</option>
+                            </select>
+                            </label>
+                        </div>
+                        <div class="solodrop">
+                            <label for="typeDropdown">Type :
+                            <select id="typeDropdown">
+                                <option value="">⌛ en attente d'un fichier..</option>
+                            </select>
+                            </label>
+                        </div>
+                        <div class="solodrop">
+                            <label for="dureeDropdown">Durée :
+                            <select id="dureeDropdown">
+                                <option value="">⌛ en attente d'un fichier..</option>
+                            </select>
+                            </label>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
