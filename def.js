@@ -156,7 +156,6 @@ function getValeurParNom(row, nom) {
 
 
 function splitTextIntoLines(text, maxWidth, fontSize, font) {
-
     const lines = [];
 
     if (text == null) {
@@ -179,6 +178,7 @@ function splitTextIntoLines(text, maxWidth, fontSize, font) {
             }
             currentLine += word;
         } else {
+            
             lines.push(currentLine);
             currentLine = word;
         }

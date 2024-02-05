@@ -128,8 +128,10 @@ async function generatePDF() {
             // Augmenter l'espacement entre les lignes
         }
 
-        doc.newCenteredText('Arial', 'normal', 30, offre.lieu, 100)
-        doc.newCenteredText('Arial', 'bold', 40, `Offre n°${offre.numero}`, 120)
+        const margetitre = doc.getTextDimensions(lignesTitre).h / 10 ;
+        console.log(margetitre);
+        doc.newCenteredText('Arial', 'normal', 30, offre.lieu, 100 + margetitre)
+        doc.newCenteredText('Arial', 'bold', 40, `Offre n°${offre.numero}`, 120 + margetitre)
 
         let contenuOffre = offre.type;
         if (offre.duree && offre.duree.trim() !== '') {
